@@ -11,6 +11,7 @@
       <p class="card-text"><strong>Zipcode: </strong>{{ customer_record.zipcode }}</p>
       <p class="card-text"><strong>Phone: </strong>{{ customer_record.phone }}</p>
       <p class="card-text"><strong>Email: </strong>{{ customer_record.email }}</p>
+      <a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a>
       <a href="{% url 'home' %}" class="btn btn-secondary">Go Back</a>
     </div>
   </div>
