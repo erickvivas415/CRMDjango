@@ -6,8 +6,8 @@
 
 <h1 class="mb-3 mt-3">Records</h1>
 {% if records %}
-    <table class="table table-striped">
-        <thead>
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
             <th scope="col">First</th>
@@ -18,7 +18,7 @@
         <tbody>
         {% for record in records %}
           <tr>
-            <th scope="row">{{ record.id }}</th>
+            <th scope="row"><a href="{% url 'record' record.id %}">{{ record.id }}</a></th>
             <td>{{ record.first_name }}</td>
             <td>{{ record.last_name }}</td>
             <td>{{ record.email }}</td>
