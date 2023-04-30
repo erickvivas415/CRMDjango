@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Customer Record</h1>
-{{ customer_record }}
+
+<div class="card mt-4">
+    <h5 class="card-header">{{ customer_record }}</h5>
+    <div class="card-body">
+      <p class="card-title"><strong>ID: </strong>{{ customer_record.id }}</p>
+      <p class="card-title"><strong>Address: </strong>{{ customer_record.address }}</p>
+      <p class="card-text"><strong>City: </strong>{{ customer_record.city }}</p>
+      <p class="card-text"><strong>State: </strong>{{ customer_record.state }}</p>
+      <p class="card-text"><strong>Zipcode: </strong>{{ customer_record.zipcode }}</p>
+      <p class="card-text"><strong>Phone: </strong>{{ customer_record.phone }}</p>
+      <p class="card-text"><strong>Email: </strong>{{ customer_record.email }}</p>
+      <a href="{% url 'home' %}" class="btn btn-secondary">Go Back</a>
+    </div>
+  </div>
+
+
 {% endblock %}
