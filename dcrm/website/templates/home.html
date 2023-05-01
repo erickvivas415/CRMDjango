@@ -5,6 +5,11 @@
 {% if user.is_authenticated %}
 
 <h1 class="mb-3 mt-3">Records</h1>
+<form  class="mt-4">
+  {% csrf_token %}
+  <label for="product">Search</label>
+  <input class="mb-3" type="text" name="product" id="product">
+</form>
 {% if records %}
     <table class="table table-striped table-hover table-bordered">
         <thead class="table-dark">

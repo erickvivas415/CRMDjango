@@ -3,11 +3,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm, AddRecordForm
 from .models import Record
+import json
+from django.http import JsonResponse
 
 # Create your views here.
 
 def home(request):
     records = Record.objects.all()
+    
 
     # Check if see if logging in
     if request.method == 'POST':
@@ -23,6 +26,13 @@ def home(request):
             messages.success(request, "There was an error, Please try again...")
             return redirect('home')
     else:
+        if 'term' in request.GET:
+            qs = Record.objects.filter(first_name__icontains=request.GET.get('term'))
+            titles = list()
+            for urecord in qs:
+                titles.append(urecord.first_name)
+            # titles = [product.title for product in qs]
+            return JsonResponse(titles, safe=False)
         return render(request, 'home.html', {'records': records})
 
 
@@ -93,3 +103,13 @@ def update_record(request, pk):
     else:
         messages.success(request, "You must be looged in.")
         return redirect('home')
+    
+#def autocomplete(request):
+#    if 'term' in request.GET:
+#        qs = Record.objects.filter(first_name__icontains=request.GET.get('term'))
+#        titles = list()
+#        for urecord in qs:
+#            titles.append(urecord.first_name)
+#        # titles = [product.title for product in qs]
+#        return JsonResponse(titles, safe=False)
+#    return render(request, 'home.html')
